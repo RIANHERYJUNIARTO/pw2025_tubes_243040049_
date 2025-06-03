@@ -50,6 +50,7 @@ if(isset($_POST["register"]) ) {
             <label for="Email"> Email</label>
             <input type="email" name="email" id="email">
         </li>
+       
         <li>
             <button type="submit" name="register">Sokin
 
