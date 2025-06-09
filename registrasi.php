@@ -36,7 +36,9 @@ if (isset($_POST["register"])) {
 
         .body-log {
             color: #fff;
-            
+            background: rgb(200, 67, 10);
+            text-align: center;
+            border-radius: 20px;
 
         }
 
@@ -59,6 +61,22 @@ if (isset($_POST["register"])) {
         label {
             display: block;
             align-items: center;
+
+
+
+        }
+        li {
+            
+        }
+        button {
+            width: 90px;
+            height: 20px;
+            background: lightblue;
+            border: none;
+            outline: none;
+            margin-bottom: 10px;
+            
+
         }
     </style>
 </head>
@@ -99,7 +117,7 @@ if (isset($_POST["register"])) {
                 </li>
 
                 <li>
-                    <button type="submit" name="register">Sokin
+                    <button type="submit" name="register">masuk
 
                     </button>
                 </li>
