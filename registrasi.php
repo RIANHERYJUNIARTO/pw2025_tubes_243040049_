@@ -94,27 +94,22 @@ if (isset($_POST["register"])) {
 
 
                         <label for="username">Username</label>
-                        <input type="text" name="username" id="username">
+                        <input type="text" name="username" id="username" required>
                     </div>
                 </li>
                 <li>
                     <div class="wrapper">
                         <label for="password">Pasword</label>
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="password" required>
                     </div>
                 </li>
                 <li>
                     <div class="wrapper">
                         <label for="password2"> konfirmasi Pasword</label>
-                        <input type="password" name="password2" id="password2">
+                        <input type="password" name="password2" id="password2" required>
                     </div>
                 </li>
-                <li>
-                    <div class="wrapper">
-                        <label for="Email"> Email</label>
-                        <input type="email" name="email" id="email">
-                    </div>
-                </li>
+               
 
                 <li>
                     <button type="submit" name="register">masuk
