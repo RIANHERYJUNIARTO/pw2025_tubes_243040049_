@@ -6,12 +6,12 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 
-?>
-<?php require('pastials/header.php'); ?>
+?><?php require('pastials/header.php'); ?>
+
 <?php require('pastials/navbar.php'); ?>
 <?php require('../functions.php');
-$queryusers = mysqli_query( $conn, "SELECT * FROM register");
-$jumlahusers = mysqli_num_rows($queryusers);
+$queryregister = mysqli_query( $conn, "SELECT * FROM register");
+$jumlahregister = mysqli_num_rows($queryregister);
 
 $querydonasi = mysqli_query( $conn, "SELECT * FROM donations");
 $jumlahdonasi = mysqli_num_rows($querydonasi);
@@ -76,7 +76,7 @@ $jumlahkategori = mysqli_num_rows($querykategori);
               </div>
               <div class="col-6 text-white">
                 <h3>Users</h3>
-                <p class="fs-4"> <?php echo $jumlahkategori;?> </p>
+                <p class="fs-4"> <?php echo $jumlahregister;?> </p>
                 <p><a href="dasboard_data_users.php" class="text-white no-decoration">Lihat Detail</a></p>
               </div>
             </div>

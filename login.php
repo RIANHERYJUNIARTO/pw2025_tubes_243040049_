@@ -1,7 +1,19 @@
 <?php
 session_start();
-if(isset($_SESSION["login"])) {
-    header("location:admin/dasboard_admin.php ");
+//if(isset($_SESSION["login"])) {
+    
+//    header("location:admin/dasboard_admin.php ");
+    //exit;
+//}
+if (isset($_SESSION["login"])) {
+    if ($_SESSION['role'] == 'admin') {
+        // PERBAIKAN PATH: Naik 1 level ke index.php di admin_panel
+        header("Location: admin/dasboard_admin.php");
+    } else {
+        // PERBAIKAN PATH: Naik 2 level ke halaman_user
+        header("Location: index.php");
+        
+    }
     exit;
 }
 
@@ -25,10 +37,24 @@ if (isset($_POST["login"])) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row["password"])); {
             //set session
-            $_SESSION["login"] = true;
+            // $_SESSION["login"] = true;
 
-            header("location:admin/dasboard_admin.php");
-            exit;
+            // header("location:admin/dasboard_admin.php");
+            // exit;
+            $_SESSION["login"] = true;
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["role"] = $row["role"];
+
+            // === LOGIKA PENGALIHAN BERDASARKAN ROLE ===
+            if ($row["role"] == 'admin') {
+                // PERBAIKAN PATH: Naik 1 level ke index.php di admin_panel
+                header("Location: admin/dasboard_admin.php");
+                exit;
+            } else {
+                // PERBAIKAN PATH: Naik 2 level ke halaman_user
+                header("Location: index.php");
+                exit;
+            }
         }
     }
     $error = true;

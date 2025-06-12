@@ -13,10 +13,7 @@ $title = 'Form Tambah Data donasi';
 $kategori_list = query("SELECT * FROM kategori ORDER BY nama_kategori ASC");
 if (isset($_POST['submit'])) {
 
-
-
     if (tambah($_POST) > 0) {
-
         echo "<script>
             alert('Data berhasil ditambahkan!');
             document.location.href = 'donasi.php';
@@ -31,7 +28,6 @@ if (isset($_POST['submit'])) {
 ?>
 
 <?php require('pastials/header.php'); ?>
-
 <?php require('pastials/navbar.php'); ?>
 
 <div class="container mt-5">
@@ -40,10 +36,12 @@ if (isset($_POST['submit'])) {
             <h1 class="mb-3 ">Form Tambah Data donasi</h1>
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
-                        <label for="user_id" class="form-label">Pilih Kategori</label>
-                        <select class="form-select" name="user_id" id="user_id" required>
+                        <!-- PERUBAIKAN: Mengubah name dan id dari 'user_id' menjadi 'id_kategori' -->
+                        <label for="id_kategori" class="form-label">Pilih Kategori</label>
+                        <select class="form-select" name="id_kategori" id="id_kategori" required>
                             <option value="" disabled selected>-- Pilih Kategori Aktivitas --</option>
                             <?php foreach ($kategori_list as $kat) : ?>
+                                <!-- Nilai (value) tetap menggunakan 'user_id' jika itu adalah primary key di tabel kategori Anda -->
                                 <option value="<?= $kat['user_id']; ?>"><?= htmlspecialchars($kat['nama_kategori']); ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -74,4 +72,3 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </div>
-
