@@ -117,11 +117,16 @@ if (isset($_POST["register"])) {
 
                     </button>
                 </li>
+                 <div class="text-center  mb-3">
+                            <small>Belum punya akun? <a href="login.php" class="text-success fw-bold">Daftar di sini</a></small>
+                    </div>
             </div>
 
 
         </ul>
+        
     </form>
+    
 </body>
 
 </html>

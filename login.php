@@ -199,6 +199,9 @@ if (isset($_POST["login"])) {
                 <button type="submit" name="login">login</button>
             </ul>
         </form>
+        <div class="text-center mt-3">
+                            <small>Belum punya akun? <a href="registrasi.php" class="text-success fw-bold">Daftar di sini</a></small>
+                    </div>
     </div>
 </body>
 
