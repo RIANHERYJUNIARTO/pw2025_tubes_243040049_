@@ -1,4 +1,11 @@
 <?php
+session_start();
+if(isset($_SESSION["login"])) {
+    header("location:admin/dasboard_admin.php ");
+    exit;
+}
+
+
 require 'functions.php';
 if (isset($_POST["login"])) {
 
@@ -17,7 +24,10 @@ if (isset($_POST["login"])) {
         //cek password
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row["password"])); {
-            header("location: index.php");
+            //set session
+            $_SESSION["login"] = true;
+
+            header("location:admin/dasboard_admin.php");
             exit;
         }
     }
