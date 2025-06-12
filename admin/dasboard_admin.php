@@ -10,11 +10,14 @@ if(!isset($_SESSION["login"])){
 <?php require('pastials/header.php'); ?>
 <?php require('pastials/navbar.php'); ?>
 <?php require('../functions.php');
-$querykategori = mysqli_query( $conn, "SELECT * FROM users");
-$jumlahkategori = mysqli_num_rows($querykategori);
+$queryusers = mysqli_query( $conn, "SELECT * FROM register");
+$jumlahusers = mysqli_num_rows($queryusers);
 
 $querydonasi = mysqli_query( $conn, "SELECT * FROM donations");
 $jumlahdonasi = mysqli_num_rows($querydonasi);
+
+$querykategori = mysqli_query( $conn, "SELECT * FROM kategori");
+$jumlahkategori = mysqli_num_rows($querykategori);
 
 
 ?>
@@ -88,6 +91,21 @@ $jumlahdonasi = mysqli_num_rows($querydonasi);
               <div class="col-6 text-white">
                 <h3>Galang Dana</h3>
                 <p class="fs-4"> <?php echo$jumlahdonasi; ?> </p>
+                <p><a href="dasboard_data_users.php" class="text-white no-decoration">Lihat Detail</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-lg-4 col-md-6 col-12  mb-3">
+          <div class="summary-produk p-1">
+            <div class="row">
+              <div class="col-6">
+                <i class="bi bi-cash icon text-black-60"></i>
+              </div>
+              <div class="col-6 text-white">
+                <h3>KATEGORI</h3>
+                <p class="fs-4"> <?php echo$jumlahkategori; ?> </p>
                 <p><a href="dasboard_data_users.php" class="text-white no-decoration">Lihat Detail</a></p>
               </div>
             </div>

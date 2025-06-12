@@ -8,3 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesdheet" href="../fontawesome/css/fontawesome.min.css">
 </head>
+
+<style>
+    .color {
+        width: 100px;
+    }
+</style>

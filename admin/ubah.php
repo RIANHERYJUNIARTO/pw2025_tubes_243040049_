@@ -57,16 +57,23 @@ if (isset($_POST['submit'])) {
                 </div>
                
                 <div class="mb-3">
-                    <label for="email" class="form-label">age</label>
+                    <label for="age" class="form-label">age</label>
                     <input type="text" class="form-control" id="age" name="age" required
-                      value="<?=$dns["age"]; ?>">>
+                      value="<?=$dns["age"]; ?>">
+                </div>
+                <div class="mb-3">
+                  
+                    <label for="photo" class="form-label"></label>
+                      <img src="../img/<?= $dns['photo'];?>"width ="500" height="300"  >
+                    <input type="file" class="form-control" id="photo" name="photo" required
+                     >
                 </div>
              
                
                 <div class="mb-3">
                     <label for="gambar" class="form-label">created_at</label>
                     <input type="datetime-local" class="form-control" id="created_at" name="created_at" required
-                      value="<?=$dns["created_at"]; ?>">>
+                      value="<?=$dns["created_at"]; ?>">
                 </div>
                 <div class="my-4 d-grid gap-4">
                     <button type="submit" name="submit" class="btn btn-primary">Ubah</button>
