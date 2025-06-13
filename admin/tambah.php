@@ -47,12 +47,12 @@ if (isset($_POST['submit'])) {
                         </select>
                     </div>
                 <div class="mb-3">
-                    <label for="nama" class="form-label">user</label>
+                    <label for="nama" class="form-label">Judul</label>
                     <input type="text" class="form-control" id="username" name="username" required autofocus>
                 </div>
                
                 <div class="mb-3">
-                    <label for="age" class="form-label">age</label>
+                    <label for="age" class="form-label">deskripsi</label>
                     <input type="age" class="form-control" id="age" name="age" required>
                 </div>
                 <div class="mb-3 ">

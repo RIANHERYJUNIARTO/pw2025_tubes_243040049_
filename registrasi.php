@@ -1,132 +1,79 @@
 <?php
 require 'functions.php';
 
+// Cek jika form disubmit
 if (isset($_POST["register"])) {
 
-    if ("registrasi"($_POST) > 0) {
+    // 1. PERBAIKAN KRITIS: Cara memanggil fungsi yang benar
+    if (registrasi($_POST) > 0) {
         echo "<script>
-                    alert('user baru berhasil di tambahkan!');
-                    document.location.href= 'login.php';
-                </script>";
+                  alert('User baru berhasil ditambahkan!');
+                  document.location.href = 'login.php';
+              </script>";
     } else {
+        // Menampilkan pesan error dari MySQL jika registrasi gagal
         echo mysqli_error($conn);
     }
 }
-
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrasi</title>
+    <title>Halaman Registrasi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #ddd;
-
-
+            background-color: #f0f2f5; /* Warna latar yang lebih lembut dan modern */
         }
-
-        .body-log {
-            color: #fff;
-            background: rgb(200, 67, 10);
-            text-align: center;
-            border-radius: 20px;
-
-        }
-
-        .wrapper {
-            position: relative;
-            width: 400px;
-            height: 50px;
-            background: rgb(200, 67, 10);
-            border-radius: 10px;
-            padding: 20px;
-
-
-
-
-
-        }
-
-
-
-        label {
-            display: block;
-            align-items: center;
-
-
-
-        }
-        li {
-            
-        }
-        button {
-            width: 90px;
-            height: 20px;
-            background: lightblue;
-            border: none;
-            outline: none;
-            margin-bottom: 10px;
-            
-
+        .card {
+            border: 0; /* Menghilangkan border default dari card */
         }
     </style>
 </head>
 
 <body>
 
-
-    <form action="" method="post">
-        <ul>
-            <div class="body-log">
-                <h1>Halaman Registrasi</h1>
-
-                <li>
-                    <div class="wrapper">
-
-
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" required>
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-danger text-white text-center py-3">
+                        <h3 class="fw-bold my-2">Buat Akun Baru</h3>
                     </div>
-                </li>
-                <li>
-                    <div class="wrapper">
-                        <label for="password">Pasword</label>
-                        <input type="password" name="password" id="password" required>
-                    </div>
-                </li>
-                <li>
-                    <div class="wrapper">
-                        <label for="password2"> konfirmasi Pasword</label>
-                        <input type="password" name="password2" id="password2" required>
-                    </div>
-                </li>
-               
+                    <div class="card-body p-4">
+                        <form action="" method="post">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required autofocus>
+                                <label for="username">Username</label>
+                            </div>
 
-                <li>
-                    <button type="submit" name="register">masuk
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                                <label for="password">Password</label>
+                            </div>
 
-                    </button>
-                </li>
-                 <div class="text-center  mb-3">
-                            <small>Belum punya akun? <a href="login.php" class="text-success fw-bold">Daftar di sini</a></small>
+                            <div class="form-floating mb-4">
+                                <input type="password" class="form-control" name="password2" id="password2" placeholder="Konfirmasi Password" required>
+                                <label for="password2">Konfirmasi Password</label>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-danger btn-lg fw-bold" name="register">Register</button>
+                            </div>
+                        </form>
                     </div>
+                    <div class="card-footer text-center py-3">
+                        <small>Sudah punya akun? <a href="login.php">Login di sini</a></small>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
-
-        </ul>
-        
-    </form>
-    
 </body>
-
 </html>

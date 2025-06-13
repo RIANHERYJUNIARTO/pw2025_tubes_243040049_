@@ -51,13 +51,13 @@ if (isset($_POST['submit'])) {
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $dns["id"]; ?>">
                 <div class="mb-3">
-                    <label for="nama" class="form-label">user</label>
+                    <label for="nama" class="form-label">Judul</label>
                     <input type="text" class="form-control" id="username" name="username" required autofocus
                     value="<?=$dns["username"]; ?>">
                 </div>
                
                 <div class="mb-3">
-                    <label for="age" class="form-label">age</label>
+                    <label for="age" class="form-label">deskripsi</label>
                     <input type="text" class="form-control" id="age" name="age" required
                       value="<?=$dns["age"]; ?>">
                 </div>

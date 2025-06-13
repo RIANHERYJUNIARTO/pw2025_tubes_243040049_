@@ -1,6 +1,6 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
   <div class="container-fluid">
-    <a class="navbar-brand " href="dasboard_admin.php">Peduli</a>
+    <a class="navbar-brand " href="dasboard_admin.php">BantuSesama</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -18,8 +18,7 @@
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav=item">
-        <a class="button" arian-curent="page" href="logout_admin.php">
-        logout </a>
+       <a class="btn btn-primary" href="logout_admin.php" arian-current="page " role="button">Logout</a>
         </li>
       </ul>
      

@@ -16,6 +16,7 @@ function query($query)
   }
   return $rows;
 }
+//fungsi tambah
 function tambah($data)
 {
   $conn = koneksi();
@@ -33,7 +34,6 @@ function tambah($data)
     return false;
   }
 
-  // PERBAIKAN: Menghapus tanda kutip tunggal di sekitar $users_id and $id_kategori
   $query = "INSERT INTO donations (users_id, username, age, photo, created_at, id_kategori)
             VALUES ($users_id, '$user', '$age', '$photo', '$created_at', $id_kategori)";
 
@@ -42,7 +42,7 @@ function tambah($data)
 
   return mysqli_affected_rows($conn);
 }
-
+//fungsi upload
 function upload() {
     $namafile = $_FILES['photo']['name'];
     $ukuranfile = $_FILES['photo']['size'];
@@ -81,22 +81,44 @@ function upload() {
     $namafilebaru .= '.';
     $namafilebaru .= $ekstensigambar;
     
-    // lolos pengecekan, gambar siap di upload
-    move_uploaded_file($tmpname, '../img/' . $namafilebaru); // Sebaiknya gunakan nama file baru untuk menghindari duplikasi
-    return $namafilebaru;
+    // PERBAIKAN: Gunakan path absolut dari direktori file ini untuk keandalan
+    $project_root = dirname(__DIR__); // Ini akan mengarah ke direktori utama proyek
+    $target_dir = $project_root . '/img/';
+
+    // Pengecekan direktori
+    if (!file_exists($target_dir)) {
+        // Coba buat direktori jika tidak ada
+        mkdir($target_dir, 0777, true);
+    }
+
+    if (!is_writable($target_dir)) {
+        echo "<script>alert('Error: Direktori tujuan " . $target_dir . " tidak dapat ditulis (periksa izin folder).');</script>";
+        return false;
+    }
+    
+    if (move_uploaded_file($tmpname, $target_dir . $namafilebaru)) {
+        return $namafilebaru;
+    } else {
+        echo "<script>alert('Error: Gagal memindahkan file gambar. Terjadi kesalahan yang tidak diketahui.');</script>";
+        return false;
+    }
 }
+
+
+
 
 function hapus($id) {
   $conn = koneksi();
   // Ambil nama file gambar sebelum menghapus data dari DB
   $data = query("SELECT photo FROM donations WHERE id = $id")[0];
-  if ($data && file_exists('../img/' . $data['photo'])) {
-      unlink('../img/' . $data['photo']); // Hapus file gambar dari server
+  if ($data && file_exists(dirname(__DIR__) . '/img/' . $data['photo'])) {
+      unlink(dirname(__DIR__) . '/img/' . $data['photo']); // Hapus file gambar dari server
   }
   
   mysqli_query($conn, "DELETE FROM donations WHERE id = $id");
   return mysqli_affected_rows($conn);
 }
+
 
 function ubah($data)
 {
@@ -105,22 +127,18 @@ function ubah($data)
     $id = htmlspecialchars($data['id']);
     $username = htmlspecialchars($data['username']);
     $age = htmlspecialchars($data['age']);
-    $photoLama = htmlspecialchars($data['photoLama']); // Ambil nama foto lama dari hidden input
+    $photoLama = htmlspecialchars($data['photoLama']); 
     $created_at = htmlspecialchars($data['created_at']);
 
-    // Cek apakah user memilih gambar baru atau tidak
     if ($_FILES['photo']['error'] === 4) {
-        // Jika tidak ada gambar baru diunggah, gunakan foto lama
         $photo = $photoLama;
     } else {
-        // Jika ada gambar baru, unggah gambar tersebut
         $photo = upload();
         if (!$photo) {
-            return false; // Jika upload gagal, hentikan proses
+            return false; 
         }
-        // Hapus foto lama jika berhasil upload foto baru
-        if(file_exists('../img/' . $photoLama)){
-            unlink('../img/' . $photoLama);
+        if(file_exists(dirname(__DIR__) . '/img/' . $photoLama)){
+            unlink(dirname(__DIR__) . '/img/' . $photoLama);
         }
     }
     
@@ -133,4 +151,17 @@ function ubah($data)
 
     mysqli_query($conn, $query) or die(mysqli_error($conn));
     return mysqli_affected_rows($conn);
+
+
+}
+//mencari kategori
+function cari($keyword) {
+    $query = "SELECT donations.*, kategori.nama_kategori 
+              FROM donations 
+              JOIN kategori ON donations.id_kategori = kategori.user_id
+              WHERE
+              donations.username LIKE '%$keyword%' OR
+              kategori.nama_kategori LIKE '%$keyword%'
+              ORDER BY donations.created_at DESC";
+    return query($query);
 }
